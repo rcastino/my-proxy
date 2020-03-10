@@ -115,7 +115,7 @@ stages:
             displayName: 'Unit tests'
 
           - script: |
-              docker run -d --name redis redis
+              docker run -d -p 6379:6379 --name redis redis
             displayName: 'Start redis'
 
           - script: |
