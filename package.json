@@ -27,7 +27,9 @@
     "test:integration": "jest --config=jest.integration.js --runInBand",
     "test": "npm-run-all -s test:*",
     "lint": "tslint --project .",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "dist:modules": "modclean -r -n default:safe && npm prune --production",
+    "predeploy": "npm-run-all build dist:modules"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.24",
@@ -49,6 +51,7 @@
     "jest": "^23.6.0",
     "jest-xml-matcher": "^1.1.1",
     "js-yaml": "^3.13.1",
+    "modclean": "^3.0.0-beta.1",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.3",
