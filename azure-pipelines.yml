@@ -75,7 +75,14 @@ stages:
               yarn lint
             displayName: 'Lint'
 
-      # A3) Check source code with danger (ignore when master)
+      # A3) Validate API definition
+      - job: lint_api
+        steps:
+        - script: |
+            npx oval validate -p api_pagopa.yaml
+          displayName: 'Validate openAPI'
+
+      # A4) Check source code with danger (ignore when master)
       - job: danger
         condition: and(succeeded(),
             and(
