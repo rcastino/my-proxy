@@ -114,11 +114,7 @@ stages:
               yarn test:unit
             displayName: 'Unit tests'
 
-          - task: DockerInstaller@0
-            inputs:
-              dockerVersion: 17.09.0-ce
-              releaseType: stable
-            displayName: Docker Installer
+
 
           - script: |
               docker run -d -p 6379:6379 --name redis redis
