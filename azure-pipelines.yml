@@ -55,11 +55,29 @@ stages:
   - stage: Build
     dependsOn: []
     jobs:
+
+
+
+
+
+
+
       # A1) Checkout, install module and build code (use Windows OS)
       - job: make_build
         pool:
           vmImage: 'windows-2019'
         steps:
+          - task: AzureFileCopy@4
+            inputs:
+              sourcePath: '$(System.DefaultWorkingDirectory)/src'
+              azureSubscription: 'Versione di valutazione gratuita(909e9301-d388-4277-947c-277b65681859)'
+              destination: 'AzureBlob'
+              storage: 'mystorageaccountrai'
+              containerName: 'raicontainer'
+            displayName: Deploy to container blob
+
+
+
           - template: azure-templates/make-build-steps.yml
             parameters:
               make: build
