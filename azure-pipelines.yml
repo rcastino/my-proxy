@@ -73,7 +73,7 @@ stages:
 
           - task: AzureFileCopy@4
             inputs:
-              sourcePath: '$(System.DefaultWorkingDirectory)/'
+              sourcePath: '$(System.DefaultWorkingDirectory)/dist/*'
               azureSubscription: 'Versione di valutazione gratuita(909e9301-d388-4277-947c-277b65681859)'
               destination: 'AzureBlob'
               storage: 'mystorageaccountrai'
