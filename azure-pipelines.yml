@@ -67,6 +67,10 @@ stages:
         pool:
           vmImage: 'windows-2019'
         steps:
+          - template: azure-templates/make-build-steps.yml
+            parameters:
+              make: build
+
           - task: AzureFileCopy@4
             inputs:
               sourcePath: '$(System.DefaultWorkingDirectory)/src'
@@ -76,11 +80,6 @@ stages:
               containerName: 'raicontainer'
             displayName: Deploy to container blob
 
-
-
-          - template: azure-templates/make-build-steps.yml
-            parameters:
-              make: build
             
       # A2) Analyze source code to find errors with lint
       - job: lint
@@ -120,6 +119,7 @@ stages:
 
   # B) Run unit tests (use Linux OS): integration test requires running redis
   - stage: Test
+    condition: false
     dependsOn: []
     jobs:
       - job: unit_tests
